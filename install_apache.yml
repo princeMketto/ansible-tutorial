@@ -13,3 +13,15 @@
     apt: 
       name: apache2
       state: latest
+    when: ansible_distribution in ["Debian","Ubuntu"]
+
+
+  - name: Update repository index
+    dnf:
+      update_cache: yes
+
+  - name: Installing httpd package
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS"
